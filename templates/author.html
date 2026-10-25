@@ -1,0 +1,3 @@
+{% extends "articles.html" %}
+{% block heading %}Posts by {{ author }}{% endblock %}
+{% block css %}{{ super() }}<link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/author.css"/>{% endblock %}

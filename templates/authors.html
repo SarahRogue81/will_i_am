@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Authors | {{ SITENAME }}{% endblock %}
+{% block css %}<link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/authors.css"/>{% endblock %}
+{% block content %}
+<article class="card">
+    <h1>Authors</h1>
+    <ul class="term-list">
+        {% for author, author_articles in authors | sort %}
+        <li><a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a> <span>{{ author_articles | count }}</span></li>
+        {% endfor %}
+    </ul>
+</article>
+{% endblock %}

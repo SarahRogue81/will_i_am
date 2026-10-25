@@ -1,0 +1,3 @@
+{% extends "articles.html" %}
+{% block heading %}Tagged “{{ tag }}”{% endblock %}
+{% block css %}{{ super() }}<link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/tag.css"/>{% endblock %}

@@ -1,0 +1,3 @@
+{% extends "articles.html" %}
+{% block heading %}Category: {{ category }}{% endblock %}
+{% block css %}{{ super() }}<link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/category.css"/>{% endblock %}

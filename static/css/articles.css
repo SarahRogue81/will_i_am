@@ -1,0 +1,2 @@
+/* blog list: shorter gap between summary and date box */
+.card .prose { margin-bottom: 20px; }
