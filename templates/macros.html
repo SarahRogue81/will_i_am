@@ -1,18 +1,21 @@
 {# date/author box shown at the bottom of a page or article card #}
-{% macro meta(item, icon='fa-newspaper') %}
+{# link_authors: articles link each author to their page; pages show plain names #}
+{% macro meta(item, icon='fa-newspaper', link_authors=False) %}
 <footer class="card-meta">
     <div class="card-meta-lines">
         {% if item.date %}
-        <span><i class="fa-solid fa-calendar" aria-hidden="true"></i>
-            <time datetime="{{ item.date.isoformat() }}">{{ item.date.strftime('%B %-d, %Y') }}</time></span>
+        <span><i class="fa-solid fa-calendar" aria-hidden="true"></i><time datetime="{{ item.date.isoformat() }}">{{ item.date.strftime('%-d %B %Y') }}</time></span>
         {% endif %}
-        {% if item.author %}
-        <span><i class="fa-solid fa-user-pen" aria-hidden="true"></i>by {{ item.author }}</span>
+        {% if item.authors %}
+        <span><i class="fa-solid fa-user-pen" aria-hidden="true"></i>by
+            {%- for author in item.authors %} {% if link_authors %}<a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>{% else %}{{ author }}{% endif %}{% if not loop.last %},{% endif %}{% endfor %}</span>
+        {% endif %}
+        {% if item.category %}
+        <span><i class="fa-solid fa-paperclip" aria-hidden="true"></i><a href="{{ SITEURL }}/{{ item.category.url }}">{{ item.category }}</a></span>
         {% endif %}
         {% if item.tags %}
         <span><i class="fa-solid fa-tags" aria-hidden="true"></i>
-            {% for tag in item.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
-        </span>
+            {%- for tag in item.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">#{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span>
         {% endif %}
     </div>
     <i class="fa-solid {{ icon }} card-meta-icon" aria-hidden="true"></i>

@@ -6,6 +6,6 @@
 <article class="card">
     <h1>{{ article.title }}</h1>
     <div class="prose">{{ article.content }}</div>
-    {{ meta(article) }}
+    {{ meta(article, link_authors=True) }}
 </article>
 {% endblock %}

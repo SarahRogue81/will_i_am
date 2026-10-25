@@ -1,14 +1,16 @@
 {% extends "base.html" %}
-{% from "macros.html" import meta with context %}
 {% block title %}{% block heading %}Blog{% endblock %} | {{ SITENAME }}{% endblock %}
 {% block css %}<link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/articles.css"/>{% endblock %}
 {% block content %}
-<h1 class="list-heading">{{ self.heading() }}</h1>
-{% for a in articles %}
-<article class="card">
-    <h2><a href="{{ SITEURL }}/{{ a.url }}">{{ a.title }}</a></h2>
-    <div class="prose">{{ a.summary }}</div>
-    {{ meta(a) }}
-</article>
-{% endfor %}
+<section class="card">
+    <h1>{{ self.heading() }}</h1>
+    <ul class="post-list">
+        {% for a in articles %}
+        <li>
+            <a href="{{ SITEURL }}/{{ a.url }}">{{ a.title }}</a>
+            <time datetime="{{ a.date.isoformat() }}">{{ a.date.strftime('%-d %b') }}</time>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
 {% endblock %}
